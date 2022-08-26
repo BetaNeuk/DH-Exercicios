@@ -23,5 +23,5 @@ module.exports = {
     });
 
     return res.render('moviesDetail', { movie });
-  }, 
+  }
 }
