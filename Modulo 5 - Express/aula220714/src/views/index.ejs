@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Início'}) %>
+<body>
+	<!-- Header -->
+	<%- include('partials/headerNavbar') %>
+	<!-- /Header -->
+	
+	<!-- Banner -->
+	<div class="banner"></div>
+	<!-- /Banner -->
+
+	<!-- última visita -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Baseado em sua última visita</h2>
+			</div>
+			<!-- Show the "visited" products -->
+			<% productsLastView.forEach(produto => { %>
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/products/detail/<%= produto.id %>">
+							<figure class="product-box_image">
+								<img src="/images/products/<%= produto.image %>" alt="imagem do produto">
+							</figure>
+							<article class="product-box_data">
+								<h2>$<%= toThousand(produto.price) %></h2>
+								<span><%= produto.discount %> % OFF</span>
+								<p><%= produto.name %></p>
+								<i class="fas fa-truck"></i>
+							</article>
+						</a>
+					</section>
+				</div>
+			<% }) %> 
+		</div>
+	</div>
+	<!-- /ultima visita -->
+
+	<!-- Ofertas -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Ofertas</h2>
+			</div>
+			<!-- Show the "in-sale" products -->
+			<% discounts.forEach(produto => { %>
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/products/detail/<%= produto.id %>">
+							<figure class="product-box_image">
+								<img src="/images/products/<%= produto.image %>" alt="imagem do produto">
+							</figure>
+							<article class="product-box_data">
+								<h2>$<%= toThousand(produto.price) %></h2>
+								<span><%= produto.discount %></span>
+								<p><%= produto.name %></p>
+								<i class="fas fa-truck"></i>
+							</article>
+						</a>
+					</section>
+				</div>
+			<% }) %>
+			
+		</div>
+	</div>
+	<!-- /Ofertas -->
+
+	<!-- footer -->
+	<%- include('partials/footer') %>
+	<!-- /footer -->
+</body>	
+</html>
